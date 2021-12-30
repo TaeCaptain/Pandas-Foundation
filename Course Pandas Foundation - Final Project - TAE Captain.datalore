@@ -1,0 +1,570 @@
+{
+  "version":"1.0",
+  "data":{
+    "sheets":[
+      {
+        "name":"Project",
+        "blocks":[
+          {
+            "type":"MD",
+            "text":"# Final Project - Analyzing Sales Data\n\n**Date**: 30 December 2021\n\n**Author**: Khunphut Prakanrattana\n\n**Course**: `Pandas Foundation`",
+            "outputs":[
+              
+            ],
+            "meta":{
+              
+            },
+            "language":"MARKDOWN",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# import data\nimport pandas as pd\ndf = pd.read_csv(\"sample-store.csv\")",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# preview top 5 rows\ndf.head()",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "html":"<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n<\/style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th><\/th>\n      <th>Row ID<\/th>\n      <th>Order ID<\/th>\n      <th>Order Date<\/th>\n      <th>Ship Date<\/th>\n      <th>Ship Mode<\/th>\n      <th>Customer ID<\/th>\n      <th>Customer Name<\/th>\n      <th>Segment<\/th>\n      <th>Country\/Region<\/th>\n      <th>City<\/th>\n      <th>...<\/th>\n      <th>Postal Code<\/th>\n      <th>Region<\/th>\n      <th>Product ID<\/th>\n      <th>Category<\/th>\n      <th>Sub-Category<\/th>\n      <th>Product Name<\/th>\n      <th>Sales<\/th>\n      <th>Quantity<\/th>\n      <th>Discount<\/th>\n      <th>Profit<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n    <tr>\n      <th>0<\/th>\n      <td>1<\/td>\n      <td>CA-2019-152156<\/td>\n      <td>2019-11-08<\/td>\n      <td>2019-11-11<\/td>\n      <td>Second Class<\/td>\n      <td>CG-12520<\/td>\n      <td>Claire Gute<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Henderson<\/td>\n      <td>...<\/td>\n      <td>42420.0<\/td>\n      <td>South<\/td>\n      <td>FUR-BO-10001798<\/td>\n      <td>Furniture<\/td>\n      <td>Bookcases<\/td>\n      <td>Bush Somerset Collection Bookcase<\/td>\n      <td>261.9600<\/td>\n      <td>2<\/td>\n      <td>0.00<\/td>\n      <td>41.9136<\/td>\n    <\/tr>\n    <tr>\n      <th>1<\/th>\n      <td>2<\/td>\n      <td>CA-2019-152156<\/td>\n      <td>2019-11-08<\/td>\n      <td>2019-11-11<\/td>\n      <td>Second Class<\/td>\n      <td>CG-12520<\/td>\n      <td>Claire Gute<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Henderson<\/td>\n      <td>...<\/td>\n      <td>42420.0<\/td>\n      <td>South<\/td>\n      <td>FUR-CH-10000454<\/td>\n      <td>Furniture<\/td>\n      <td>Chairs<\/td>\n      <td>Hon Deluxe Fabric Upholstered Stacking Chairs,...<\/td>\n      <td>731.9400<\/td>\n      <td>3<\/td>\n      <td>0.00<\/td>\n      <td>219.5820<\/td>\n    <\/tr>\n    <tr>\n      <th>2<\/th>\n      <td>3<\/td>\n      <td>CA-2019-138688<\/td>\n      <td>2019-06-12<\/td>\n      <td>2019-06-16<\/td>\n      <td>Second Class<\/td>\n      <td>DV-13045<\/td>\n      <td>Darrin Van Huff<\/td>\n      <td>Corporate<\/td>\n      <td>United States<\/td>\n      <td>Los Angeles<\/td>\n      <td>...<\/td>\n      <td>90036.0<\/td>\n      <td>West<\/td>\n      <td>OFF-LA-10000240<\/td>\n      <td>Office Supplies<\/td>\n      <td>Labels<\/td>\n      <td>Self-Adhesive Address Labels for Typewriters b...<\/td>\n      <td>14.6200<\/td>\n      <td>2<\/td>\n      <td>0.00<\/td>\n      <td>6.8714<\/td>\n    <\/tr>\n    <tr>\n      <th>3<\/th>\n      <td>4<\/td>\n      <td>US-2018-108966<\/td>\n      <td>2018-10-11<\/td>\n      <td>2018-10-18<\/td>\n      <td>Standard Class<\/td>\n      <td>SO-20335<\/td>\n      <td>Sean O'Donnell<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Fort Lauderdale<\/td>\n      <td>...<\/td>\n      <td>33311.0<\/td>\n      <td>South<\/td>\n      <td>FUR-TA-10000577<\/td>\n      <td>Furniture<\/td>\n      <td>Tables<\/td>\n      <td>Bretford CR4500 Series Slim Rectangular Table<\/td>\n      <td>957.5775<\/td>\n      <td>5<\/td>\n      <td>0.45<\/td>\n      <td>-383.0310<\/td>\n    <\/tr>\n    <tr>\n      <th>4<\/th>\n      <td>5<\/td>\n      <td>US-2018-108966<\/td>\n      <td>2018-10-11<\/td>\n      <td>2018-10-18<\/td>\n      <td>Standard Class<\/td>\n      <td>SO-20335<\/td>\n      <td>Sean O'Donnell<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Fort Lauderdale<\/td>\n      <td>...<\/td>\n      <td>33311.0<\/td>\n      <td>South<\/td>\n      <td>OFF-ST-10000760<\/td>\n      <td>Office Supplies<\/td>\n      <td>Storage<\/td>\n      <td>Eldon Fold 'N Roll Cart System<\/td>\n      <td>22.3680<\/td>\n      <td>2<\/td>\n      <td>0.20<\/td>\n      <td>2.5164<\/td>\n    <\/tr>\n  <\/tbody>\n<\/table>\n<p>5 rows × 21 columns<\/p>\n<\/div>",
+                    "specialKind":"TABLE",
+                    "type":"html"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# shape of dataframe\ndf.shape",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "text":"(9994, 21)",
+                    "type":"text"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# see data frame information using .info()\ndf.info()",
+            "outputs":[
+              {
+                "stdout":"<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 9994 entries, 0 to 9993\nData columns (total 21 columns):\n #   Column          Non-Null Count  Dtype  \n---  ------          --------------  -----  \n 0   Row ID          9994 non-null   int64  \n 1   Order ID        9994 non-null   object \n 2   Order Date      9994 non-null   object \n 3   Ship Date       9994 non-null   object \n 4   Ship Mode       9994 non-null   object \n 5   Customer ID     9994 non-null   object \n 6   Customer Name   9994 non-null   object \n 7   Segment         9994 non-null   object \n 8   Country\/Region  9994 non-null   object \n 9   City            9994 non-null   object \n 10  State           9994 non-null   object \n 11  Postal Code     9983 non-null   float64\n 12  Region          9994 non-null   object \n 13  Product ID      9994 non-null   object \n 14  Category        9994 non-null   object \n 15  Sub-Category    9994 non-null   object \n 16  Product Name    9994 non-null   object \n 17  Sales           9994 non-null   float64\n 18  Quantity        9994 non-null   int64  \n 19  Discount        9994 non-null   float64\n 20  Profit          9994 non-null   float64\ndtypes: float64(4), int64(2), object(15)\nmemory usage: 1.6+ MB\n",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"MD",
+            "text":"We can use `pd.to_datetime()` function to convert columns 'Order Date' and 'Ship Date' to datetime.",
+            "outputs":[
+              
+            ],
+            "meta":{
+              
+            },
+            "language":"MARKDOWN",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# example of pd.to_datetime() function\npd.to_datetime(df['Order Date'].head(), format='%m\/%d\/%Y')",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "html":"",
+                    "specialKind":"TABLE",
+                    "type":"html"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO - convert order date and ship date to datetime in the original dataframe\ndf['Order Date']=pd.to_datetime(df['Order Date'], format='%m\/%d\/%Y')\ndf['Ship Date']=pd.to_datetime(df['Ship Date'], format='%m\/%d\/%Y')",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO - count nan in postal code column\ndf['Postal Code'].isna().sum()",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "text":"11",
+                    "type":"text"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO - filter rows with missing values\ndf[df['Postal Code'].isna()]",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "html":"<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n<\/style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th><\/th>\n      <th>Row ID<\/th>\n      <th>Order ID<\/th>\n      <th>Order Date<\/th>\n      <th>Ship Date<\/th>\n      <th>Ship Mode<\/th>\n      <th>Customer ID<\/th>\n      <th>Customer Name<\/th>\n      <th>Segment<\/th>\n      <th>Country\/Region<\/th>\n      <th>City<\/th>\n      <th>...<\/th>\n      <th>Postal Code<\/th>\n      <th>Region<\/th>\n      <th>Product ID<\/th>\n      <th>Category<\/th>\n      <th>Sub-Category<\/th>\n      <th>Product Name<\/th>\n      <th>Sales<\/th>\n      <th>Quantity<\/th>\n      <th>Discount<\/th>\n      <th>Profit<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n    <tr>\n      <th>2234<\/th>\n      <td>2235<\/td>\n      <td>CA-2020-104066<\/td>\n      <td>2020-12-05<\/td>\n      <td>2020-12-10<\/td>\n      <td>Standard Class<\/td>\n      <td>QJ-19255<\/td>\n      <td>Quincy Jones<\/td>\n      <td>Corporate<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>TEC-AC-10001013<\/td>\n      <td>Technology<\/td>\n      <td>Accessories<\/td>\n      <td>Logitech ClearChat Comfort\/USB Headset H390<\/td>\n      <td>205.03<\/td>\n      <td>7<\/td>\n      <td>0.0<\/td>\n      <td>67.6599<\/td>\n    <\/tr>\n    <tr>\n      <th>5274<\/th>\n      <td>5275<\/td>\n      <td>CA-2018-162887<\/td>\n      <td>2018-11-07<\/td>\n      <td>2018-11-09<\/td>\n      <td>Second Class<\/td>\n      <td>SV-20785<\/td>\n      <td>Stewart Visinsky<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>FUR-CH-10000595<\/td>\n      <td>Furniture<\/td>\n      <td>Chairs<\/td>\n      <td>Safco Contoured Stacking Chairs<\/td>\n      <td>715.20<\/td>\n      <td>3<\/td>\n      <td>0.0<\/td>\n      <td>178.8000<\/td>\n    <\/tr>\n    <tr>\n      <th>8798<\/th>\n      <td>8799<\/td>\n      <td>US-2019-150140<\/td>\n      <td>2019-04-06<\/td>\n      <td>2019-04-10<\/td>\n      <td>Standard Class<\/td>\n      <td>VM-21685<\/td>\n      <td>Valerie Mitchum<\/td>\n      <td>Home Office<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>TEC-PH-10002555<\/td>\n      <td>Technology<\/td>\n      <td>Phones<\/td>\n      <td>Nortel Meridian M5316 Digital phone<\/td>\n      <td>1294.75<\/td>\n      <td>5<\/td>\n      <td>0.0<\/td>\n      <td>336.6350<\/td>\n    <\/tr>\n    <tr>\n      <th>9146<\/th>\n      <td>9147<\/td>\n      <td>US-2019-165505<\/td>\n      <td>2019-01-23<\/td>\n      <td>2019-01-27<\/td>\n      <td>Standard Class<\/td>\n      <td>CB-12535<\/td>\n      <td>Claudia Bergmann<\/td>\n      <td>Corporate<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>TEC-AC-10002926<\/td>\n      <td>Technology<\/td>\n      <td>Accessories<\/td>\n      <td>Logitech Wireless Marathon Mouse M705<\/td>\n      <td>99.98<\/td>\n      <td>2<\/td>\n      <td>0.0<\/td>\n      <td>42.9914<\/td>\n    <\/tr>\n    <tr>\n      <th>9147<\/th>\n      <td>9148<\/td>\n      <td>US-2019-165505<\/td>\n      <td>2019-01-23<\/td>\n      <td>2019-01-27<\/td>\n      <td>Standard Class<\/td>\n      <td>CB-12535<\/td>\n      <td>Claudia Bergmann<\/td>\n      <td>Corporate<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>OFF-AR-10003477<\/td>\n      <td>Office Supplies<\/td>\n      <td>Art<\/td>\n      <td>4009 Highlighters<\/td>\n      <td>8.04<\/td>\n      <td>6<\/td>\n      <td>0.0<\/td>\n      <td>2.7336<\/td>\n    <\/tr>\n    <tr>\n      <th>9148<\/th>\n      <td>9149<\/td>\n      <td>US-2019-165505<\/td>\n      <td>2019-01-23<\/td>\n      <td>2019-01-27<\/td>\n      <td>Standard Class<\/td>\n      <td>CB-12535<\/td>\n      <td>Claudia Bergmann<\/td>\n      <td>Corporate<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>OFF-ST-10001526<\/td>\n      <td>Office Supplies<\/td>\n      <td>Storage<\/td>\n      <td>Iceberg Mobile Mega Data\/Printer Cart<\/td>\n      <td>1564.29<\/td>\n      <td>13<\/td>\n      <td>0.0<\/td>\n      <td>406.7154<\/td>\n    <\/tr>\n    <tr>\n      <th>9386<\/th>\n      <td>9387<\/td>\n      <td>US-2020-127292<\/td>\n      <td>2020-01-19<\/td>\n      <td>2020-01-23<\/td>\n      <td>Standard Class<\/td>\n      <td>RM-19375<\/td>\n      <td>Raymond Messe<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>OFF-PA-10000157<\/td>\n      <td>Office Supplies<\/td>\n      <td>Paper<\/td>\n      <td>Xerox 191<\/td>\n      <td>79.92<\/td>\n      <td>4<\/td>\n      <td>0.0<\/td>\n      <td>37.5624<\/td>\n    <\/tr>\n    <tr>\n      <th>9387<\/th>\n      <td>9388<\/td>\n      <td>US-2020-127292<\/td>\n      <td>2020-01-19<\/td>\n      <td>2020-01-23<\/td>\n      <td>Standard Class<\/td>\n      <td>RM-19375<\/td>\n      <td>Raymond Messe<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>OFF-PA-10001970<\/td>\n      <td>Office Supplies<\/td>\n      <td>Paper<\/td>\n      <td>Xerox 1881<\/td>\n      <td>12.28<\/td>\n      <td>1<\/td>\n      <td>0.0<\/td>\n      <td>5.7716<\/td>\n    <\/tr>\n    <tr>\n      <th>9388<\/th>\n      <td>9389<\/td>\n      <td>US-2020-127292<\/td>\n      <td>2020-01-19<\/td>\n      <td>2020-01-23<\/td>\n      <td>Standard Class<\/td>\n      <td>RM-19375<\/td>\n      <td>Raymond Messe<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>OFF-AP-10000828<\/td>\n      <td>Office Supplies<\/td>\n      <td>Appliances<\/td>\n      <td>Avanti 4.4 Cu. Ft. Refrigerator<\/td>\n      <td>542.94<\/td>\n      <td>3<\/td>\n      <td>0.0<\/td>\n      <td>152.0232<\/td>\n    <\/tr>\n    <tr>\n      <th>9389<\/th>\n      <td>9390<\/td>\n      <td>US-2020-127292<\/td>\n      <td>2020-01-19<\/td>\n      <td>2020-01-23<\/td>\n      <td>Standard Class<\/td>\n      <td>RM-19375<\/td>\n      <td>Raymond Messe<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>OFF-EN-10001509<\/td>\n      <td>Office Supplies<\/td>\n      <td>Envelopes<\/td>\n      <td>Poly String Tie Envelopes<\/td>\n      <td>2.04<\/td>\n      <td>1<\/td>\n      <td>0.0<\/td>\n      <td>0.9588<\/td>\n    <\/tr>\n    <tr>\n      <th>9741<\/th>\n      <td>9742<\/td>\n      <td>CA-2018-117086<\/td>\n      <td>2018-11-08<\/td>\n      <td>2018-11-12<\/td>\n      <td>Standard Class<\/td>\n      <td>QJ-19255<\/td>\n      <td>Quincy Jones<\/td>\n      <td>Corporate<\/td>\n      <td>United States<\/td>\n      <td>Burlington<\/td>\n      <td>...<\/td>\n      <td>NaN<\/td>\n      <td>East<\/td>\n      <td>FUR-BO-10004834<\/td>\n      <td>Furniture<\/td>\n      <td>Bookcases<\/td>\n      <td>Riverside Palais Royal Lawyers Bookcase, Royal...<\/td>\n      <td>4404.90<\/td>\n      <td>5<\/td>\n      <td>0.0<\/td>\n      <td>1013.1270<\/td>\n    <\/tr>\n  <\/tbody>\n<\/table>\n<p>11 rows × 21 columns<\/p>\n<\/div>",
+                    "specialKind":"TABLE",
+                    "type":"html"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO - Explore this dataset on your owns, ask your own questions\ndf.describe()",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "html":"<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n<\/style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th><\/th>\n      <th>Row ID<\/th>\n      <th>Postal Code<\/th>\n      <th>Sales<\/th>\n      <th>Quantity<\/th>\n      <th>Discount<\/th>\n      <th>Profit<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n    <tr>\n      <th>count<\/th>\n      <td>9994.000000<\/td>\n      <td>9983.000000<\/td>\n      <td>9994.000000<\/td>\n      <td>9994.000000<\/td>\n      <td>9994.000000<\/td>\n      <td>9994.000000<\/td>\n    <\/tr>\n    <tr>\n      <th>mean<\/th>\n      <td>4997.500000<\/td>\n      <td>55245.233297<\/td>\n      <td>229.858001<\/td>\n      <td>3.789574<\/td>\n      <td>0.156203<\/td>\n      <td>28.656896<\/td>\n    <\/tr>\n    <tr>\n      <th>std<\/th>\n      <td>2885.163629<\/td>\n      <td>32038.715955<\/td>\n      <td>623.245101<\/td>\n      <td>2.225110<\/td>\n      <td>0.206452<\/td>\n      <td>234.260108<\/td>\n    <\/tr>\n    <tr>\n      <th>min<\/th>\n      <td>1.000000<\/td>\n      <td>1040.000000<\/td>\n      <td>0.444000<\/td>\n      <td>1.000000<\/td>\n      <td>0.000000<\/td>\n      <td>-6599.978000<\/td>\n    <\/tr>\n    <tr>\n      <th>25%<\/th>\n      <td>2499.250000<\/td>\n      <td>23223.000000<\/td>\n      <td>17.280000<\/td>\n      <td>2.000000<\/td>\n      <td>0.000000<\/td>\n      <td>1.728750<\/td>\n    <\/tr>\n    <tr>\n      <th>50%<\/th>\n      <td>4997.500000<\/td>\n      <td>57103.000000<\/td>\n      <td>54.490000<\/td>\n      <td>3.000000<\/td>\n      <td>0.200000<\/td>\n      <td>8.666500<\/td>\n    <\/tr>\n    <tr>\n      <th>75%<\/th>\n      <td>7495.750000<\/td>\n      <td>90008.000000<\/td>\n      <td>209.940000<\/td>\n      <td>5.000000<\/td>\n      <td>0.200000<\/td>\n      <td>29.364000<\/td>\n    <\/tr>\n    <tr>\n      <th>max<\/th>\n      <td>9994.000000<\/td>\n      <td>99301.000000<\/td>\n      <td>22638.480000<\/td>\n      <td>14.000000<\/td>\n      <td>0.800000<\/td>\n      <td>8399.976000<\/td>\n    <\/tr>\n  <\/tbody>\n<\/table>\n<\/div>",
+                    "specialKind":"TABLE",
+                    "type":"html"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"MD",
+            "text":"## Data Analysis Part\n\nAnswer 10 below questions to get credit from this course. Write `pandas` code to find answers.",
+            "outputs":[
+              
+            ],
+            "meta":{
+              
+            },
+            "language":"MARKDOWN",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 01 - how many columns, rows in this dataset\ncolumns = df.shape[1]\nrows = df.shape[0]\nprint(f\"colums = {columns} and rows = {rows}\")",
+            "outputs":[
+              {
+                "stdout":"colums = 21 and rows = 9994\n",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 02 - is there any missing values?, if there is, which colunm? how many nan values?\nmiss=df.isna().sum()[df.isna().sum()!=0]\nprint(miss)",
+            "outputs":[
+              {
+                "stdout":"Postal Code    11\ndtype: int64\n",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 03 - your friend ask for `California` data, filter it and export csv for him\nca=df[df['State']=='California']\nca.to_csv('California.csv')",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 04 - your friend ask for all order data in `California` and `Texas` in 2017 (look at Order Date), send him csv file\nta=df[((df['State']=='California') | (df['State']=='Texas')) & (pd.DatetimeIndex(df['Order Date']).year==2017)]\nta.to_csv('California_Texas_in2017.csv')",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 05 - how much total sales, average sales, and standard deviation of sales your company make in 2017\nAG=df[pd.DatetimeIndex(df['Order Date']).year==2017]\nS1=AG['Sales'].sum()\nS2=AG['Sales'].mean()\nS3=AG['Sales'].std()\nprint(f'total sales= {S1} , average sales= {S2} and standard deviation of sales = {S3}')",
+            "outputs":[
+              {
+                "stdout":"total sales= 484247.4981 , average sales= 242.97415860511836 and standard deviation of sales = 754.0533572593688\n",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 06 - which Segment has the highest profit in 2018\nSE=df[pd.DatetimeIndex(df['Order Date']).year==2018]\nSES=SE.groupby(['Segment'])['Profit'].agg('sum').sort_values(ascending=False)\nSegment=SES.index[0]\nProfit=SES[0]\nprint(f'Segment {Segment} has the highest profit in 2018 = {Profit}')",
+            "outputs":[
+              {
+                "stdout":"Segment Consumer has the highest profit in 2018 = 28460.1665\n",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 07 - which top 5 States have the least total sales between 15 April 2019 - 31 December 2019\nSA=df[(df['Order Date'] >= '2019-4-15') & (df['Order Date'] <= '2019-12-31')]\nSA.groupby(['State'])['Sales'].sum().sort_values(ascending=False).head(5)",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "html":"",
+                    "specialKind":"TABLE",
+                    "type":"html"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 08 - what is the proportion of total sales (%) in West + Central in 2019 e.g. 25% \ntotal=df['Sales'].sum()\nwc=df[((df['Region']=='West') | (df['Region']=='Central')) & (pd.DatetimeIndex(df['Order Date']).year==2019)]['Sales'].sum()\npop=wc\/total*100\nprint(f'proportion of total sales (%) in West + Central in 2019 = {pop} %')",
+            "outputs":[
+              {
+                "stdout":"proportion of total sales (%) in West + Central in 2019 = 14.579027819807749 %\n",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 09 - find top 10 popular products in terms of number of orders vs. total sales during 2019-2020\npo=df[(pd.DatetimeIndex(df['Order Date']).year==2019) | (pd.DatetimeIndex(df['Order Date']).year==2020)]\\\n    [['Product Name','Sales','Quantity']]\npog=po.groupby(['Product Name']).sum()\nsale=pog.sort_values('Sales',ascending=False).head(10)\nquantity=pog.sort_values('Quantity',ascending=False).head(10)\nprint('top 10 popular products in number of orders = ',quantity.index.tolist(),'\\n'\\\n    ,'top 10 popular products in total sales = ',sale.index.tolist())",
+            "outputs":[
+              {
+                "stdout":"top 10 popular products in number of orders =  ['Staples', 'Easy-staple paper', 'Staple envelope', 'Staples in misc. colors', 'Chromcraft Round Conference Tables', 'Storex Dura Pro Binders', 'Situations Contoured Folding Chairs, 4\/Set', 'Wilson Jones Clip & Carry Folder Binder Tool for Ring Binders, Clear', 'Avery Non-Stick Binders', 'Eldon Wave Desk Accessories'] \n top 10 popular products in total sales =  ['Canon imageCLASS 2200 Advanced Copier', 'Hewlett Packard LaserJet 3310 Copier', '3D Systems Cube Printer, 2nd Generation, Magenta', 'GBC Ibimaster 500 Manual ProClick Binding System', 'GBC DocuBind TL300 Electric Binding System', 'GBC DocuBind P400 Electric Binding System', 'Samsung Galaxy Mega 6.3', 'HON 5400 Series Task Chairs for Big and Tall', 'Martin Yale Chadless Opener Electric Letter Opener', 'Global Troy Executive Leather Low-Back Tilter']\n",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO 10 - plot at least 2 plots, any plot you think interesting :)\ndf['Category'].value_counts().plot(kind='pie')",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "text":"<AxesSubplot:ylabel='Category'>",
+                    "type":"text"
+                  },
+                  {
+                    "image":"iVBORw0KGgoAAAANSUhEUgAAARAAAADnCAYAAADW6gkAAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjMuNCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8QVMy6AAAACXBIWXMAAAsTAAALEwEAmpwYAAAfaUlEQVR4nO3deZgcVbnH8e\/bs4WQMIBAAtkaggKRkEgiwbAkIniVBsErLoA4uBFAwLAozT4qaiubURQUroAIXhDEhRZZQ0IStoSEtEZWaSCyCDNJZ5tMMjPv\/aNqbjrDLJ1Od53uqvfzPP1Md00tvyzzzqlTVeeIqmKMMcWIuQ5gjKleVkCMMUWzAmKMKZoVEGNM0ayAGGOKZgXEGFM0KyDGmKJZATHGFM0KiDGmaFZAjDFFswJijCmaFRBjTNGsgBhjimYFxBhTNCsgxpiiWQExxhTNCogxpmhWQIwxRbMCYowpWmAFRERGisifRORFEXlZRGaJSH3e938nIktF5GwR2VtElojIYhEZKyILSnD8YSJyr4g8KyLLROSvW7vPXo4xXUTu9d9\/SkSSpT6GMZVEghhUWUQEeBK4TlVvEpEa4FdAq6p+S0SGA\/NUdU9\/\/SRQq6qXlzDDL4FlqjrL\/7yfqi4t1f79fU4HzlPVo0q5X2MqVVAtkMOA9ap6E4CqdgJnA18RkcHAA8AIv9VxGTATOE1EZgOIyJruHYnI+SKS8VsSKX\/ZWBH5m4gsEpHHRGTvXjLsCizv\/tBdPPJbDf7na0XkZP99VkR+7B\/vKRHpLnA3i8j1IrJQRF4QkfcUDBE5WUSu9d\/vLCJ3i8jT\/usgf\/k0\/8\/c3doaWuTfrzFO1AZ0nA8Ci\/IXqOoqEXkN2BP4FHCvqk6E\/2+xrFHVK\/O3EZFPAscAU1R1nYjs6H\/rV8CpqvqiiEwBfoFXtPL9HLhDRM4AHgJuUtU3CsieU9XxIvIl4CdAd7GIAwcAY4HZ3cWlD7OAa1R1noiMBu4H9gHOA76hqvNFZAiwvoA8xlSMoApIqRyO94O\/DkBVW\/0fvKnA7726A0BDzw1V9X4R2QP4BPBJYLGI7FvAMX+X9\/WavOV3qmoX8KKI\/AvordWTn3tcXr7t\/NzzgatF5DbgD6q6vK8dGFOJgiogy4Dj8heIyHbAaOAlYJet2HcMWNndeumPqrYCtwO3+6cthwJvs\/mp3KCemxXwvrfPPTMeqKo9WxgpEUkDRwLzReS\/VPW5Af4YxlSMoPpAHgYG+6cB+J2oVwE3d7cmCvQg8GW\/3wQR2VFVVwGviMhn\/WUiIhN6bigih+VtNxTv1OM14FW81kGDiGwPfKzHpp\/P+\/p43vLPikhMRMYCewDP95P7AeDMvCwT\/a9jVTWjqj8Cnqb\/VowxFSeQAqLepZ5P4\/3QvQi8gHe+f+EW7udvwJ+BhSKyBK8PAeBE4Ksi8izwD7x+kp4m+dstxSsEN6rq06r6OnAn8Hf\/6+Ie2+3gb\/NNvI7fbq8BTwH34fW\/9Nd\/cRYw2b9MvQw41V8+U0T+7u9\/o78vY6pGIJdxq5WIZIHJqvpuj+U343X63uUi10DiyfRgYDjeqWH3a1gvn3cEOoE2vILe16sNeBP4F\/CK\/\/WNbCph\/3kirto6UU0P8WR6W2B\/4MP+6wC8U6pyWx9Ppl\/Ea7nlv16xwhId1gKpIvFkug7Yj82LxT5AjctcPbyFd5n8fuDBbCrxtuM8poysgFS4eDI9DK9P51jgo7z3KlElU2ApXjF5AJiXTSXa3UYypWQFpALFk+lRwBfwOp6nEJ6HHtcBc\/AKyu+zqUQhN\/KZCmYFpELEk+ntgc8CXwQOAaTfDapfB\/AX4Hq8Ux37j1iFrIA4Fk+mp+Bdjj6aXu6gjYiX8B5HuCmbSrw70MqmclgBcSSeTB8BXIDXr2E87cBdwPXZVGKe6zBmYFZAAhRPpgWvX+MCYLLjOJXu78DPgF9nU4kO12FM76yABMC\/\/HoicD52u\/qWeh44P5tK\/Ml1EPNeVkDKKJ5M1wMz8Po4RjuOU+3mAudlU4mnXQcxm1gBKZN4Mn0I8Eu8G71MaSjwv8AF2VTiVddhjBWQkosn0zsAVwBfIfyXYl1px+sf+X42lVjpOEukWQEpoXgyfSJwNVs3vokpXAtwKXCd3UfihhWQEogn02OB64AjXGeJqIeAL2dTCRvRLWBWQLaCf3XlW8AlVNczKmG0Ejgrm0rc6jpIlFgBKVI8md4D+APwntHPjFN3AV+3vpFgWAEpQjyZPhy4A29AHlN5XgE+b5d8yy8sT3kGJp5Mnwv8DSselWx3YF48mf6m6yBhZy2QAsWT6UHADXhPy5rq8QfgpGwqsSWDd5sCWQEpgD8+xz14AzOb6vMEkMimEq2ug4SNncIMwL+jdCFWPKrZgcBj8WR6pOsgYWMFpB\/xZHoG3pw2dmNY9RsHzI8n03u5DhImVkD64HeWXg\/Uuc5iSmY0XueqDaVQIlZAehFPppPAlQOuaKrRTsDseDLdcwZCUwQrID3Ek+mLgR+6zmHKagjw13gyfdyAa5p+WQHJE0+mLwK+5zqHCUQ9cEc8mf6y6yDVzC7j+uLJ9Bl4j4ibaOkAjsqmEve7DlKNrIAA8WT6JOAWbPyOqFoFHJxNJTKug1SbyBeQeDJ9LN4DWJU0PaQJ3uvAlGwq8abrINUk0gUknkx\/CFiAPYpvPIuAadlUYq3rINUisp2o\/kxwd2PFw2wyCbg9nkxH9udiS0XyL8qfn+U3eE9tGpPvU3jDUpoCRLKA4M3PcrTrEKZifdO\/KmcGELk+kHgyPR1vDE3rNDX96QQOz6YSj7oOUskiVUDiyfSuwGJgmOsspipkgfHZVGKN6yCVKjKnMPFkuhZvGEIrHqZQceyZqH5FpoDgPd9yiOsQpurMiCfTNl1HHyJxCuM\/efmQ6xymar2GdyqzynWQShP6Fog\/d8u1rnOYqjYau7Tbq9AXEGAmsLfrEKbqfTWeTH\/SdYhKE+pTmHgyvRvwHDDUdRYTCv8G9rVJqzYJewvkCqx4mNIZAfzEdYhKEtoWSDyZPhSY4zqHCaUDs6nEk65DVIJQtkDiyXQN1nFqyufHrgNUilAWEOAbwHjXIUxoHRpPphOuQ1SC0J3CxJPpXYAXgEbXWUyoZYCJ2VSiy3UQl8LYAjkfKx6m\/MYDJ7gO4VqoWiDxZHo7vKHptnOdxUTC88C4KLdCwtYC+RpWPExw9gI+6zqES6FpgfhXXl4GxrjOYiIlA0zIphLh+EHaQmFqgXwGKx4meOOBY1yHcCVMBeQc1wFMZM10HcCVUJzCxJPpqcB81zlMZCmwRzaVyLoOErSwtECs9WFcEuBLrkO4UPUFJJ5M7w4c6zqHibyTXAdwoeoLCHA6NsK6cW\/PeDJ9kOsQQavqAuJPEPV51zmM8TW5DhC0qi4gwBRglOsQxvg+F0+mIzVVarUXkEjfBWgqTiMR64+r2gLin74c5zqHMT1E6jSmagsI3kzqo12HMKaHI+LJ9HDXIYJSzQXEBnQxlagGOMx1iKBUcwE50nUAY\/pwqOsAQanKAhJPpncGJrvOYUwfrIBUuE9QvdlN+O3j\/5ILvWr9IfyY6wDGDOBg1wGCUFABEZFKu1V8ousAxgwgEqcxhbZAXhSRK0RkXFnTFMCfLHsf1zmMGYAVkDwT8KZKuFFEnhCRU0TE1dij+wD1jo5tTKEm+IN8h1pBBURVV6vqDao6FW\/ahMuAN0XkFhHZs6wJ32tCwMczphg1QOifzi24D0REPiUi9+BNLnwVsAfwF+Cv5YvXKysgplqEviO1tsD1XgRmA1eo6oK85XeJSNDnelZATLX4gOsA5TZgAfGvwNysqt\/t7fuqelbJU\/XPCoipFqF\/VmvAUxhV7QSOCiDLgOLJ9K5AJG7QMaEQ+mlGCr0KM19ErhWRQ0Rk\/+5XWZP1zlofpprsEk+mG1yHKKdC+0Am+l\/zT2OU4J86tPs\/TDURvNOYF10HKZeCCoiqfrTcQQq0k+sAxmyhUBeQQi\/jNorI1SKy0H9dJSKN5Q7Xix0cHNOYrRHqfpBC+0B+DawGPue\/VgE3lStUP7Z3cExjtkaoC0ihfSBjVfUzeZ+\/IyJLypBnINs7OKYxWyPUl3ILbYG0icj\/31UnIgcBbeWJ1C87hTHVxlogwGnALX6\/hwCtwMnlCtWP7R0c05it4aKvMDCFXoVZAkzofgJXVVeVM1Q\/tnd0XGOKVec6QDkVVEBE5JwenwFywCK\/uATFTmFMtQl1ASm0D2QycCowwn\/NwBuX9AYR+XaZsm3GnzIw1Hf1mVAKdQEptA9kJLC\/qq4BEJHLgDTeqEuLgB+XJ95mQj84iwklKyDALkB73ueNwDBVbROR9j62KbUNAR0nUhrYsP5\/67\/71Fd379x5g+gw13nCJ7Y6zHOgFVpAbgOeFJE\/+Z+PBm4XkW2BZWVJ9l6uOm5D6\/2yPPun+ovbB8uGQ49au+Oj9wwdYs8alVzXatcJyklUtbAVRSazaYi2+aq6sGyp+hBPptcA2wZ93DD6Ss19Cy6pvXW8CEMBcrHYyoNHj6hHZLDrbCHzcqYpE\/Swn4HZknlhBgGrVHUW8KqI7F6mTP2xVshWqmdj+931l829tO7Wqd3FA6Cxq2v78e0bAv+lEAFBneI7UejDdJfhDaZ8gb+oDvhtuUL1wwrIVthd3nhtccMp\/5oUe7HXYSgvaWkdEXSmCGh1HaCcCm2BfBr4FLAWQFXfgE2\/vQJkBaRIJ9Q89MQj9ec1bivtffZz7LNh49j3dXQ+E2SuCGhxHaCcCi0gG9TrLFEAv\/PUBSsgW6iWjo2\/q7t87g\/qfn2gyMC3VZ+zYkVnELkixAoIcKeI\/BLYXkS+DjwE3Fi+WH2yArIFRsvbyxc3zHjhIzXLCh45\/+g16ybXqb5SzlwRY6cwqnolcBdwN7AXcKmq\/rScwfpgBaRAn6159KlH688eMlTaPrgl2wnI51etfq1cuSIo1C2QQp+F+ZGqng882MuyIOUCPl7VqaGz49d1V8w7NLZ0mghSzD7OWJGb9NvthuZwM+pc2LzrOkA5FXoKc0Qvyz5ZyiAFesPBMavGCN5585mGGcum1SydXmzxANhWdciU9e1LShgtyl52HaCc+i0gInKaiGSAvURkad7rFWBpMBE385yDY1aFY2LzFz7WMLO+UdbtV4r9XfJu6x6odpViXxEX2gGVYeBTmNuB+4AfAsm85atV1UXnkBWQHmJ0df6y7urHDo89U\/QpS2\/GdHSM2q2j86k36moPKNU+I2gd8G\/XIcqp3xaIquZUNauqx6vqq3jDGCowRERcjPX4L6DDwXEr0nBa317UcGrmiJpntuqUpS\/nt66oL\/U+I+alTFOmsGdFqlShd6IeLSIvAq8Ac4AsXsskUNlUYiMhP6cs1CdiTz6zoOHM2A6yZmK5jnHYuraJg7q6ni\/X\/iPgBdcByq3QTtTLgQOBF1R1d+BjwBNlS9W\/vzs6bkUQurqurZv16HV1sybGRMs+T\/DJudX\/KfcxQswKiG+jqrYAMRGJqepsvFHKXIjsrdY7sfKdpxtOX3JUzZPTRbboQciifS2X+7B4\/\/Zmy4X+\/2qh\/wlXisgQYC5wm4jMwn8uxoHQ\/6P05rDYM88+2fCNrp1kVaCTmjcog6ava8sEecwQedx1gHLr9yqMiOwJDAOOwetAPRs4EW+uizPLnq53ESsgqlfXXTf307F5B4tQ4yLBhS0r9p49eJuNiIR6eL4Sez3TlAn9fUsDtUB+gjcGyFpV7VLVDlW9BbgHaC53uN5kU4n\/EPJLY912YFXrEw1nLPrvmnnTXBUPgOGdncN339jxtKvjV6nQtz5g4AIyTFXf03z1l8XLkqgw8xweOxCHxJZmnm44vX24rHDV17SZi1ta7bb2LWMFhP4nctqmhDm21F8cHrvMVH9Ye8Oc39Sl9qmVrl1dp+l2wPr2Dw7p6or0FbAt5OoqZaAGKiAL\/cf3NyMiX8ObzsGV+4DQjVvRyJqV8xvOevr42tnTRAoe8Dowp63I2dPQhVkJRGJ4yH4HVRaRYXj9HRvYVDAmA\/XAp1X1rbIn7EM8mZ6DNy9NKBwY+8c\/flv3w8Za6RrpOktfOqBjUnzUO10iFdMyqlB3ZJoyX3AdIgj9\/pZT1beBqSLyUWBff3FaVR8pe7KB\/YWQFJDm2pvnNtU88BGRyp6EqBZqj1y77vl7h2xrBaR\/IT7F3lzB0zpUmngyvRdV\/nDdUNbm7q2\/6J9jYv850HWWQrXGYi3TRo\/YFpFBrrNUqE5gl0xTJtQjkXUL5G7GcsimEs9TxY9K7y8vPPdMw6krq6l4AOzY1fW+fTZstEu6fVsQleIBVVxAfFXZVLyg9ra5d9c3714nnWNcZynGpe+2DnedoYLd6zpAkKyABGhb2lY\/XH\/ughm16UNFaHCdp1j7btjw\/h06Oxe7zlGBFLjTdYggVXsBmYd3yaziTZCXXljcMOPdsbE3p7rOUgozW1dudJ2hAs3ONGWyrkMEqaoLSDaV6AB+5zrHQM6tvfOxP9ZfOqpeOlxMB1oWx65ZO7lW1UZv39xNrgMEraoLiO+n+BNeVZrBrF97f\/23559Z+8dDRJzeuVtyMYgdt3qNzR+zySq8aU8ipeoLSDaVeA6433WOnsZJ9uXFDTPe2iu2\/CDXWcrlrNaVH0J1tescFeKOTFOmzXWIoFV9AfHNch0g3zdq\/jgvXX\/hrg2ycazrLOU0VHW7SevbIza8Qp9+7TqAC2EpIPdTATeVDaK97d76C+d9q+7Og0UY7DpPEC5taY1TrXcjls5TmaZMJB6e6ykUBSSbSiheX4gzH5DXX1ncMGP5vrHswS5zBG2PjR1jhnV2Rv3Gsh+5DuBKKAqI7zc4uqT79Zr0gvvrz995G9nwfhfHd+3bLSsq7snhAL0A\/NF1CFdCU0CyqcRa4MYgj1nPxvY\/1F8696K626aKMCTIY1eSj69r27+hq+sl1zkcuTLTlInsDH6hKSC+awlonJA95I1XlzSc8sr+sZdC8UTw1jpp1eo3XWdw4C28lm9khaqAZFOJVwngVuKTah544uH683YYLO17l\/tY1WLGylWTRXWF6xwBuzrTlGl3HcKlUBUQXxJvBPmSq6Njwx31353zvbqbDxRhu3Ico1oNUt3m4Lb1z7rOEaDXgJ+5DuFa6ApINpV4jTL0io+Rt5YvbjjlpSmx56aVet9hcVFL6wdQjcrcxRdlmjLrXYdwLXQFxPdj4NVS7exzNbOfml1\/zpAhsn5cqfYZRiM6Oncb0xGJ6R8WAbe5DlEJQllAsqlEG3De1u6nhs6OW+t+MOfHdTccEJN+R6g3vgtaVkThatS5maZM1G+eA6p4SMNCxJPpR4CPFrPtSHnnjb\/WX9CynawbX+JYoTdlzMhl62KxsLbW\/pxpyhzjOkSlCGULJM83KeKy7rGxeQvn1s8cZMWjOKesXBXWqzFtwDmuQ1SSULdAAOLJ9LXANwpZN0ZX5w11V807LLb4UBGkzNFCawNs+HB81MoukV1cZymxZKYpE9nb1nsT9hYIwKVAy0Ar7UrLW4saTv37x2oWT7PisXXqof7ja9ctc52jxJYAV7kOUWlCX0CyqUQrA3SoJmJPLJrfcFbNDrJmQkCxQu\/81hUfRDUsN1ltBE7ONGX6vEQtIu8TkSX+6y0R+Xfe5\/qBDiAi00WkJAMyi8jJInJtKfY1kNAXEIBsKnEzvdyhKnR1\/aLuJ49eW\/fTD8VEdw4+WXjt1Nm18wc2bAzL9I7fyzRl+r1JTlVbVHWiqk4Ergeu6f6sqhsCSelAJAqI7xQg2\/1hF1a8s7DhtGePrHlqukik\/h4Cc2lL606uM5TAk8APi9lQRCaJyBwRWSQi94s\/JaiI7CkiD4nIsyLyjIh0Dzw1RETuEpHnROQ2ERF\/\/ayIfMdfNyMie\/vLdxSRP4rIUhF5QkT26yVDXEQe8dd5WERG+8vH+ttkRORyEVnjL\/+NiBybt\/1tItLnVafI\/OBkU4kccALQcURs4ZLHG87Q98nqD7nOFWYT2jfs1djZWc23t7cAn+vv1KUfgner+3GqOglvxLLv+9+7Dfi5qk4ApgLdDyJ+CJgJjAP2APKHw3xXVfcHrmPTKfl3gMWquh9wIb0\/2Pcz4BZ\/ndvYNG7OLGCWqo4Hluet\/z\/AyQAi0ujnS\/f1h4xMAQHIphKPX1j725m\/qrt6fI1o2K4QVKQzV+SqdZxQBb6YacoUO\/J8A9580g+KyBLgYmCkiAwFRqjqPQCqul5V1\/nbPKWqy1W1C6\/TNp63vz\/4XxflLT8YuNXfzyPA+0Sk5zNaHwFu99\/f6m\/Tvfz3\/vvu76Oqc4D3i8jOwPHA3drP4wmRKiAAp9T+9Rci3Oc6R1Qct3rNh2tUlw+8ZsX5fqYp87et2F6Af+T1g4xX1Y8PsE1+p3MnUNvL93ouL4ffAF8EvswAY71GroDQnFPgJOBl11GioAZqjl29ttr+rh8GLtvKfbQDO4vIRwBEpE5EPqjeKPbLu\/sZRKRBRIodP\/cx4ER\/P9PxTnNW9VhnAfAF\/\/2J\/jYATwCf8d9\/occ2N+OdSqGq\/V6Oj14BAWjOrQT+G7ApCQJw9ooVE1Fd6zpHgbLACSUYZawLOA74kYg8i3dK0j0r4UnAWSKyFO8HvNi5hpuBSf5+UkBTL+ucCXzZX+ckvLuzwSsQ5\/jL9wRy3Ruo6tvAPylgoqzQ34nar+bGw\/E6iAa8Tm+2zhd3HTb32UENlT56WytwUKYp43yE\/3LzWz1tqqoi8gXgeFU9Ju97GWB\/Vc31t59otkC6NecewutxjnAVDcal77aOqvDpH9YDR0ehePgmAUv8FsjpwLkAInI4XuvjZwMVD4h6C6Rbc+O5wJWuY4TdYaN2W\/hObe1k1zl60QUcl2nK3OM6SLWJdgukW3PuKuBq1zHC7tzWla4j9OUsKx7FsQKyyXnkXQ83pXfk2nWT6lQrbULuSzJNmZ+7DlGtrIB08y7vfomID9NfTgJywqrVr7vOkefbmabM5a5DVDPrA+mpubH7FuSCxhAxW2adyNopY0Z24N0m7dLMTFOmoiZlr0bWAumpOac0587Au65uSmyw6rYfaVu\/xGEEBU6z4lEaVkD60py7ALjAdYwwuqRlxVhUA5lBsIcO4KuZpsz1Do4dSlZA+tOcS+GdykR27tNyGNXRMXJkR2fQ0z+sBD6RacoMeHelKZwVkIE0534BHAmEdaBgJ5ItrdsEeLiXgAMzTZmHAzxmJFgBKURz7n5gMt7tvaYEprWtnzCoq+v5AA41B5iSacoEcazIsQJSqObcv\/DGULjDdZSw+Gpu1TtlPsSvgCMyTZnWMh8nsuwybjGaG7+FN8xdjeso1WwDtE+Oj1ql3uA1pZQDTsk0Zd4zDq4pLWuBFKM5dwVwBCWcfzeK6qHhsHVt\/yjxbh8HJlrxCIYVkGI152YD4\/GayaZIF7Ss2IfSjFreBVwOHJppymRLsD9TADuFKYXmxo8DNwKjXEepRseOGD7\/5fr6gwZes0\/P4Z2yPDbgmqakrAVSCs25B\/AG0L3RdZRqdHHLih2K3HQ9cAkwwYqHG9YCKTVvlLNr8AqKKdDU0SMzq2tiWzKZ+YPA6ZmmzEvlymQGZi2QUvNGOZuIN5HVW27DVI\/TV+bWFLjq63hjln7ciod71gIpp+bGIcC38MYaKXbk7UjogI5J8VHvdPmzt\/XiHeAHwHWZpkxY5tytelZAgtDcuBveFYKTKP+cHlXrop12fPTPQ4dM77E4B1wFXJNpyhTaSjEBsQISpObGMXjD6n8NGOo4TcVZGYutOGT0iEGIbINXOK4DrrA7SSuXFRAXmhsbgRnAWcAIx2kqyinDdr7n8cHbzAVutBZH5bMC4lJzYx3erGAzgf3dhnFKgQeAnwNpmnM2fEKVsAJSKZobx+FNPXg8sLvjNEH5J3An8Fuac3ZFpQpZAalEzY1T8YrJ54CdHKcptRfwisadNOdseIQqZwWkknmnOB8FPgH8FzDObaCidALPAA\/hFY0lbuOYUrICUk2aG0cChwHTgOnAHk7z9K4DWIg3kM8cYB7NOZvEPKSsgFSz5sbhwH54TwXv638dBwQ1XOBKvH6M7tezwAKac2sDOr5xzApI2DQ3xoA98QrJbsAw\/zU87\/0uwCBA6P1xhg6gBXg372v3++V0F4zmnN2qH3FWQEz3ZFrdxSRGc64U43OYCIhkARGRTjYfIPlYVc2WYL8LVHWqiMSBqapqc+2aUItqAVmjqkOK2K5WVTsKWG86cJ6qHrWF+69RNxMuGVMUKyCblmWByar6rohMBq5U1eki0gyMxbvi8RrwPDDa\/zwa+Imq\/jR\/vyLyBLAP8ApwC96cMpNV9Qx\/vXv9\/T8qImuAXwKH401iFce7xb0eeBI43YqKqVRRHQ9kGxFZ4r\/uKWD9ccDhqnq8\/3lvvPsyDgAuE5G6HusngcdUdaKqXjPAvrcFnlTVCXidlJ8HDlLViXj3UJxY2B\/JmOBF9dHyNv8HtFB\/VtW2vM9pVW0H2kXkP3hXNpYXmaUTuNt\/\/zFgEvC0iIB3OfY\/Re7XmLKLagHpTQebWmSDenyv530N+QPadDLw32P+vnvuf33eKYoAt6iqTeptqkJUT2F6k8X77Q\/wma3c12o2H+8jC0wUkZiIjMI79enNw8BxIrILgIjsKCJjtjKLMWVjBWST7wCzRGQhXqtiaywFOkXkWRE5G5iP16G6DPgp3rMh76Gqy4CLgQdEZCnewMF9DfFnjHORvApjjCkNa4EYY4pmBcQYUzQrIMaYolkBMcYUzQqIMaZoVkCMMUWzAmKMKZoVEGNM0ayAGGOKZgXEGFM0KyDGmKJZATHGFM0KiDGmaFZAjDFFswJijCmaFRBjTNGsgBhjimYFxBhTNCsgxpii\/R\/i4XNmOPm82QAAAABJRU5ErkJggg==\n",
+                    "mimeType":"image\/png",
+                    "width":0,
+                    "height":0,
+                    "type":"plot"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"df['year']=pd.DatetimeIndex(df['Order Date']).year\ndf.groupby(['year'])['Sales'].sum().plot.line(color='red')",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "text":"<AxesSubplot:xlabel='year'>",
+                    "type":"text"
+                  },
+                  {
+                    "image":"iVBORw0KGgoAAAANSUhEUgAAAYwAAAEGCAYAAAB2EqL0AAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjMuNCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8QVMy6AAAACXBIWXMAAAsTAAALEwEAmpwYAAAjg0lEQVR4nO3de5gU5Zn38e8tCEGCgIKIiFEJGyUbQZxF3ahRUU6ugoouRhc8bECNh0R9Ew\/ZNwm6QXdXUd8XiYqug7uKSkCQQAAZVFyDMkQBxdOoUSEooxxVEJy594\/nwTTDHGqYnqnunt\/nuvrqmqerq+6amZ7fVNVTT5m7IyIiUpc90i5ARETygwJDREQSUWCIiEgiCgwREUlEgSEiIom0TLuAbOvUqZMffPDBaZchIpJXli5d+om7d65tnoILjIMPPpjS0tK0yxARyStm9n5d8+iQlIiIJKLAEBGRRBQYIiKSiAJDREQSUWCIiEgiCgwREUlEgSEiIokoMERE8t1nn8FVV8HGjY26GgWGiEg+++QT6N8f7rkHnn++UVdVcFd6i4g0Gx9+CAMGwHvvwbRpcNppjbo6BYaISD56440QFhs3wty58IMfNPoqFRgiIvlmyRIYPBhatIBnnoEjj2yS1eochohIPlmwAE4+Gdq1C+csmigsQIEhIpI\/pk6FIUPg4IPhf\/4HevZs0tUrMERE8sF998G550JRETz3HBxwQJOXoMAQEcll7jBuHIwZA4MGwfz50LFjKqUoMEREclVlJVx7Ldx4I5x\/PsyYAXvtlVo56iUlIpKLtm+HSy6Bhx+GK6+EO++EPdL9H1+BISKSa7ZsCecrZs2CsWPhF78As7SrUmCIiOSUDRvgjDNCl9l77oHLLku7oq8pMEREcsVHH4UT2ytXwpQpYS8jhygwRERywbvvwqmnhtCYNSsM+5FjFBgiImlbvhwGDoRt26CkBI4+Ou2KqqVutSIiaXr+eTjhhDAu1KJFORsWoMAQEUnP738fDkN16RKG+ujVK+2KaqXAEBFJw8MPw9Ch8N3vhr2Mb30r7YrqpMAQEWlqd94JI0eGe1gsXAidO6ddUSIKDBGRpuIeLsL76U\/hrLPCIal27dKuKjH1khIRaQoVFfDjH8O998I\/\/zP89rfhRHce0R6GiEhj+\/JLGDEihMUNN4ShyvMsLCBBYJjZd8zslYzHJjP7iZntY2bzzezt+Nwxzm9mdreZlZnZcjPrm7GsUXH+t81sVEb7UWa2Ir7nbrMwaEpN6xARyRubN8Npp4WbH\/3Hf8BvfpMT40LtjjoDw93fdPc+7t4HOAr4ApgOXA8scPeewIL4NcBgoGd8jAYmQvjjD\/wSOBroB\/wyIwAmAj\/KeN+g2F7TOkREct8nn0D\/\/uG+2w89FIYqz2P1PSTVH3jH3d8HhgLFsb0YGBanhwKTPVgMdDCzrsBAYL67r3P39cB8YFB8bW93X+zuDkyusqzq1iEikts++ACOPx5WrIDp02HUqLrfk+Pqe9J7BPBonO7i7mvi9EdAlzjdDfgw4z2rYltt7auqaa9tHTsxs9GEvRkOOuig+m2RiEi2vf56GAtq0yaYOzdcyV0AEu9hmFkr4AzgiaqvxT0Dz2Jdu6htHe5+n7sXuXtR5zzpzywiBWrJkrBnsW0bPPtswYQF1O+Q1GDgT+7+cfz643g4ifi8NravBrpnvO\/A2FZb+4HVtNe2DhGR3PP003DSSbD33mGojz590q4oq+oTGOfx18NRADOBHQflRgEzMtpHxt5SxwAb42GlucAAM+sYT3YPAObG1zaZ2TGxd9TIKsuqbh0iIrll6lQYMgQOPTSExbe\/nXZFWZfoHIaZtQVOBcZkNN8KPG5mlwDvAzvu9DEbGAKUEXpUXQTg7uvM7GZgSZxvrLuvi9OXAw8BbYA58VHbOkREcse994Y74x17bLiXRcfCvALAwqmBwlFUVOSlpaVplyEizYE7jBsHN90U9i6eeAL22ivtqnaLmS1196La5tGV3iIiu6OyEq65JoTFBRfAk0\/mbVgkpbGkRETqa\/t2uPhi+K\/\/gquugvHjYY\/C\/\/9bgSEiUh9ffAHnnhtGmr355rCHkadDfdSXAkNEJKkNG+D000MvqIkT4dJL066oSSkwRESSWLMGBg0KV3FPmRL2MpoZBYaISF3eeScM9fHxx3+9D3czpMAQEanNsmUwcGA40V1SAv36pV1Ragr\/tL6IyO5atCjcd3vPPeH555t1WIACQ0SkerNmhcNQ++8fTnIffnjaFaVOgSEiUtXkyTBsGPzt34a9DN02AVBgiIjsbPz4cLOjH\/wgnLPQLRO+psAQEYEwLtRNN4XhPs46C2bPhnbt0q4qp6iXlIhIRQVcfjncdx\/86EfhorwWLdKuKudoD0NEmrcvv4R\/\/McQFjfeGIYqV1hUS3sYItJ8bd4MZ54JCxbA7beHw1FSIwWGiDRP5eXhHhYvvwzFxTByZNoV5TwFhog0Px98EK6xeP99mD49DCgodVJgiEjz8vrrISw2bYJ58+D449OuKG8oMESk+XjppXAYqmVLeO456N077YryinpJiUjzMH8+nHwy7L13GOpDYVFvCgwRKXxPPAGnnQaHHhrCokePtCvKSwoMESlsv\/1tuM6iXz949lno2jXtivKWAkNECpM73HILXHZZOG8xbx507Jh2VXlNJ71FpPBUVoaL8O66Cy64AB58MNzTQhpEexgiUli2bw+jzd51F1x9dbgoT2GRFdrDEJHC8cUXcO654b7bt9wSxoYyS7uqgqHAEJHCsH59uGL7hRfCie4xY9KuqOAoMEQk\/61ZAwMHwhtvwGOPwTnnpF1RQVJgiEh+KysLQ32sXRtuenTKKWlXVLASnfQ2sw5mNtXM3jCz183sWDP7lZmtNrNX4mNIxvw3mFmZmb1pZgMz2gfFtjIzuz6j\/RAzezG2P2ZmrWJ76\/h1WXz94Cxuu4jku1degeOOC+NClZQoLBpZ0l5SdwF\/cPfDgN7A67F9vLv3iY\/ZAGbWCxgBfBcYBNxjZi3MrAUwARgM9ALOi\/MC3BaX9W1gPXBJbL8EWB\/bx8f5RETCWFA\/+EHoAbVoUbgwTxpVnYFhZu2BE4AHANx9m7tvqOUtQ4Ep7v6lu78HlAH94qPM3d91923AFGComRlwMjA1vr8YGJaxrOI4PRXoH+cXkebsqafCOYuuXcNQH4cfnnZFzUKSPYxDgHLgP83sZTObZGZt42tXmNlyM3vQzHZcQtkN+DDj\/atiW03t+wIb3P2rKu07LSu+vjHOvxMzG21mpWZWWl5enmCTRCRvFReHu+R973vw\/PNw0EFpV9RsJAmMlkBfYKK7Hwl8DlwPTAR6AH2ANcDtjVRjndz9Pncvcveizp07p1WGiDS2O+6ACy+EE08Mt1Xt1CntipqVJIGxCljl7i\/Gr6cCfd39Y3evcPdK4H7CISeA1UD3jPcfGNtqav8U6GBmLau077Ss+Hr7OL+INCfu4SK8a6+F4cPDhXnt2qVdVbNTZ2C4+0fAh2b2ndjUH1hpZplDPp4JvBqnZwIjYg+nQ4CewEvAEqBn7BHVinBifKa7O7AQGB7fPwqYkbGsUXF6OFAS5xeR5qKiIlyEN25ceJ4yBVq3TruqZinpdRhXAv8d\/9C\/C1wE3G1mfQAH\/gyMAXD318zscWAl8BXwY3evADCzK4C5QAvgQXd\/LS7\/58AUM7sFeJl4gj0+P2xmZcA6QsiISHOxdSucfz5MmwY33QQ336yhPlJkhfYPe1FRkZeWlqZdhog01ObNMGxYuL7ijjvgpz9Nu6KCZmZL3b2otnl0pbeI5J7ychg8OFyYV1wMI0emXZGgwBCRXPPBB3DqqeH5ySfhH\/4h7YokUmCISO5YuTKMC\/XZZ+EOeccfn3ZFkkE3UBKR3PDiiyEgKirCvbcVFjlHgSEi6Zs3D\/r3hw4dwtXbvXunXZFUQ4EhIul6\/PFwnqJHjxAWPXqkXZHUQIEhIumZOBFGjICjjw6Hobp2rfs9khoFhog0PfdwEd7ll8Npp8HcueFwlOQ09ZISkaZVWRkuwrv7bvinf4IHHgj3tJCcpz0MEWk627eHi\/DuvjuExkMPKSzyiPYwRKRpfPFFGGl2zhz4zW\/g+us1LlSeUWCISONbvz70hPrjH+Hee2H06LQrkt2gwBCRxvWXv4Tbqb71VuhCO3x43e+RnKTAEJHGU1YWxoX65BOYPTtcnCd5S4EhIo3j5Zdh0KAw1EdJCfzd36VdkTSQekmJSPY991y473arVuHqbYVFQVBgiEh2zZwZzlkccAC88AIcdljaFUmWKDBEJHseegjOOgu+9z1YtAi6d0+7IskiBYaIZMftt8NFF8FJJ8GCBdCpU9oVSZYpMESkYdzDRXjXXRe6zM6aBe3apV2VNAL1khKR3ffVV3DppWE8qDFjYMIEaNEi7aqkkWgPQ0R2z9atcO65ISx+8YswVLnCoqBpD0NE6m\/TJhg2DBYuhDvvhKuvTrsiaQIKDBGpn7VrYfBgWLYMHn4YLrgg7YqkiSgwRCS58vLQC+rdd2HGjHDzI2k2FBgiksy6dXDKKSEsZs8OwSHNigJDROq2YQMMGABvvAFPPaWwaKYUGCJSu82bwzmL5cth+vQQHNIsJepWa2YdzGyqmb1hZq+b2bFmto+ZzTezt+NzxzivmdndZlZmZsvNrG\/GckbF+d82s1EZ7UeZ2Yr4nrvNwm24alqHiDSRzz+HIUNgyRJ47DGds2jmkl6HcRfwB3c\/DOgNvA5cDyxw957Agvg1wGCgZ3yMBiZC+OMP\/BI4GugH\/DIjACYCP8p436DYXtM6RKSxbdkCZ5wRBhB85BE488y0K5KU1RkYZtYeOAF4AMDdt7n7BmAoUBxnKwaGxemhwGQPFgMdzKwrMBCY7+7r3H09MB8YFF\/b290Xu7sDk6ssq7p1iEhj2ro1BMTChVBcHC7Qk2YvyR7GIUA58J9m9rKZTTKztkAXd18T5\/kI6BKnuwEfZrx\/VWyrrX1VNe3Uso6dmNloMys1s9Ly8vIEmyQiNdq2Dc45B+bOhUmTdJ2FfC1JYLQE+gIT3f1I4HOqHBqKewae\/fKSrcPd73P3Incv6ty5c2OWIVLYtm+H884LAwjecw9cfHHaFUkOSRIYq4BV7v5i\/HoqIUA+joeTiM9r4+urgcxB8A+MbbW1H1hNO7WsQ0SyraICRo6EadNg\/Hi47LK0K5IcU2dguPtHwIdm9p3Y1B9YCcwEdvR0GgXMiNMzgZGxt9QxwMZ4WGkuMMDMOsaT3QOAufG1TWZ2TOwdNbLKsqpbh4hkU2Vl2JuYMgVuvRV+8pO0K5IclPQ6jCuB\/zazVsC7wEWEsHnczC4B3gd2nBWbDQwByoAv4ry4+zozuxlYEucb6+7r4vTlwENAG2BOfADcWsM6RCRbKivDEOWTJ8Ovfw0\/\/3naFUmOsnBqoHAUFRV5aWlp2mWI5Ad3uPLKcB+LG2+EW26BcBmUNDNmttTdi2qbR\/fDEGmu3MNd8iZMgGuvVVhInRQYIs2RO9x0E9xxR9jD+Pd\/V1hInRQYIs3R2LEwbhyMHg133aWwkEQUGCLNza23wq9+BRdeGG6rqrCQhBQYIs3J+PFwww3h4rxJk2AP\/QmQ5PTbItJcTJgA11wDZ58dutC2aJF2RZJnFBgizcH998MVV8Dpp4eRZ1vqVjhSfwoMkUI3eTKMGQODBsETT0CrVmlXJHlKgSFSyB57DC66CE4+OYwR1bp12hVJHlNgiBSqadPg\/PPh+9+HGTOgTZu0K5I8p8AQKUSzZsGIEdCvH\/z+99C2bdoVSQFQYIgUmrlzQ0+o3r1hzhxo1y7tiqRAKDBECklJCQwbBr16heBo3z7tiqSAKDBECsWiRaHbbI8eMH8+7LNP2hVJgVFgiBSCxYthyBDo3h0WLIBOndKuSAqQAkMk3y1dGq6x6NIlhEWXLmlXJAVKgSGSz5Ytg1NPhQ4dwvmLbt3SrkgKmAJDJF+tXAmnnBK6zJaUwEEHpV2RFDgFhkg+eust6N8\/jAlVUgKHHpp2RdIMaAQykXzzzjthqI+KCnjmGejZM+2KpJlQYIjkk\/ffD2GxZQssXBiutxBpIgoMkXyxalUIi02bQm+oI45IuyJpZhQYIvlgzZpwzqK8HJ5+Gvr2TbsiaYYUGCK5rrw89IZavToM99GvX9oVSTOlwBDJZZ9+GsLi3XfDQILf\/37aFUkzpsAQyVUbNsDAgfDGG\/DUU3DiiWlXJM2cAkMkF23eDIMHw\/LlMH06DBiQdkUiCgyRnPP552EgwSVLwj24Tzst7YpEAAWGSG7ZsgXOOANeeAEefRTOPDPtikS+lmhoEDP7s5mtMLNXzKw0tv3KzFbHtlfMbEjG\/DeYWZmZvWlmAzPaB8W2MjO7PqP9EDN7MbY\/ZmatYnvr+HVZfP3grG25SK7ZujUExMKFUFwM556bdkUiO6nPWFInuXsfdy\/KaBsf2\/q4+2wAM+sFjAC+CwwC7jGzFmbWApgADAZ6AefFeQFui8v6NrAeuCS2XwKsj+3j43wihWfbNjjnnNBtdtIkuOCCtCsS2UVjDD44FJji7l+6+3tAGdAvPsrc\/V133wZMAYaamQEnA1Pj+4uBYRnLKo7TU4H+cX6RwrF9O5x3HsyaBffcAxdfnHZFItVKGhgOzDOzpWY2OqP9CjNbbmYPmlnH2NYN+DBjnlWxrab2fYEN7v5VlfadlhVf3xjn34mZjTazUjMrLS8vT7hJIjmgogJGjoRp0+DOO+Gyy9KuSKRGSQPjOHfvSzic9GMzOwGYCPQA+gBrgNsbpcIE3P0+dy9y96LOnTunVYZI\/VRWhr2JKVPgttvg6qvTrkikVokCw91Xx+e1wHSgn7t\/7O4V7l4J3E845ASwGuie8fYDY1tN7Z8CHcysZZX2nZYVX28f5xfJb5WVMGYMTJ4MY8fCz36WdkUidaozMMysrZm12zENDABeNbOuGbOdCbwap2cCI2IPp0OAnsBLwBKgZ+wR1YpwYnymuzuwEBge3z8KmJGxrFFxejhQEucXyV\/ucNVV4eT2jTfCL36RdkUiiSS5DqMLMD2ea24JPOLufzCzh82sD+H8xp+BMQDu\/pqZPQ6sBL4CfuzuFQBmdgUwF2gBPOjur8V1\/ByYYma3AC8DD8T2B4CHzawMWEcIGZH85Q7XXQcTJsC118Itt4D6cUiesEL7h72oqMhLS0vTLkNkV+5w000wbhxceSXcdZfCQnKGmS2tctnELnRPb5GmMnZsCIvRoxUWkpcUGCJN4dZb4Ve\/ggsvhIkTFRaSlxQYIo1t\/Hi44Qb44Q\/Die499LGT\/KTfXJHGNGECXHMNDB8exodq0SLtikR2mwJDpLHcfz9ccUUYffaRR6ClBoeW\/KbAEGkMxcXhwrzBg+Hxx2HPPdOuSKTBFBgi2TZlShjy4+ST4Xe\/g9at065IJCsUGCLZNG1aGJr8+9+HGTOgTZu0KxLJGgWGSLbMmgUjRkC\/fvD730PbtmlXJJJVCgyRbJg7F84+G3r3hjlzoF27tCsSyToFhkhDlZTAsGHQq1cIjvbt065IpFEoMEQaYtEiOP106NED5s+HffZJuyKRRqPAENldixfDkCHQvTssWACdOqVdkUijUmCI7I6lS2HQIOjSJYRFly5pVyTS6BQYIvW1bBmceip07BjOX3TrVvd7RAqAAkOkPlauhFNOCV1mS0rgoIPSrkikySgwRJJ66y3o3z+MCVVSAoccknZFIk1Ko6GJJPHOO2Goj4oKeOYZ6Nkz7YpEmpwCQ6Qu778fwmLLFli4MFxvIdIMKTBEarNqVQiLTZtCb6gjjki7IpHUKDBEarJmTThnUV4OTz8NffumXZFIqhQYItUpLw+9oVavDsN99OuXdkUiqVNgiFT16achLN57D2bPDkOVi4gCQ2QnGzbAgAHw5pvw1FNw4olpVySSMxQYIjts3hyG+1ixAp58MlzNLSJfU2CIAHz+eRhIsLQUpk4N0yKyEwWGyJYtcMYZ8MIL8Oij4d4WIrILBYY0b1u3wplnhgvyJk+Gc89NuyKRnKXAkOZr2zY455zQbfaBB+CCC9KuSCSnJRp80Mz+bGYrzOwVMyuNbfuY2Xwzezs+d4ztZmZ3m1mZmS03s74ZyxkV53\/bzEZltB8Vl18W32u1rUOkwbZvh\/POg1mz4J574OKL065IJOfVZ7Tak9y9j7sXxa+vBxa4e09gQfwaYDDQMz5GAxMh\/PEHfgkcDfQDfpkRABOBH2W8b1Ad6xDZfRUVMHIkTJsGd94Jl12WdkUieaEhw5sPBYrjdDEwLKN9sgeLgQ5m1hUYCMx393Xuvh6YDwyKr+3t7ovd3YHJVZZV3TpEdk9lZdibmDIFbrsNrr467YpE8kbSwHBgnpktNbPRsa2Lu6+J0x8BO+5R2Q34MOO9q2Jbbe2rqmmvbR07MbPRZlZqZqXl5eUJN0mancpKGDMmnNweOxZ+9rO0KxLJK0lPeh\/n7qvNbD9gvpm9kfmiu7uZefbLS7YOd78PuA+gqKioUeuQPOUOV10FkybBTTfBv\/xL2hWJ5J1Eexjuvjo+rwWmE85BfBwPJxGf18bZVwPdM95+YGyrrf3AatqpZR0iybnDddfBhAnh+eab065IJC\/VGRhm1tbM2u2YBgYArwIzgR09nUYBM+L0TGBk7C11DLAxHlaaCwwws47xZPcAYG58bZOZHRN7R42ssqzq1iGSjHvYo7jjDrjySvi3f4PQCU9E6inJIakuwPTY07Ul8Ii7\/8HMlgCPm9klwPvAjiueZgNDgDLgC+AiAHdfZ2Y3A0vifGPdfV2cvhx4CGgDzIkPgFtrWIdIMmPHwrhxMHo03HWXwkKkASx0TCocRUVFXlpamnYZkgtuvRVuuAEuvDBcmLdHQzoFihQ2M1uacdlEtfQJksI0fnwIix\/+MJzoVliINJg+RVJ4JkyAa66B4cOhuBhatEi7IpGCoMCQwnL\/\/XDFFWH02UcegZYaLk0kWxQYUjiKi8OFeYMHw+OPw557pl2RSEHRv187rF4dBqTr2hVat067GqmvKVPCkB\/9+8PvfqefoUgjUGDsMG5cOPYNsO++cMABtT+6dNF\/sLli2rQwNPlxx8GMGdCmTdoViRQkBcYOl1wCffvCX\/6y8+PVV+Gjj8IIp5nMYL\/96g6W\/fZTD53GNGsWjBgB\/fqF6b32SrsikYKlwNjhyCPDozoVFVBevmuYZD5KS2Ht2nBlcaYWLcJhrrqCZZ99dFFZfc2dC2efDb17w5w50K5d2hWJFDQFRhItWsD++4dH3741z7d9O3z8cQiQ1at3DZWyMnjuOVi3btf3tmpVd6gccADsvbeCBaCkJNx7u1evEBzt26ddkUjBU2Bk0557woEHhkdttm6FNWtq3lt59VWYNw82bdr1vXvttXOAdOu2a6h07Qpt2zbONuaCRYvg9NOhRw+YPz\/snYlIo1NgpOEb34BDDgmP2nz22c7BUnWvZcmScJJ3y5Zd39u+fd17K\/nYI2zxYhgyBLp3hwULoFOntCsSaTYUGLnsm9+Enj3DoybusHFj7edXnnsuPG\/fvuv76+oR1q1b6BGWCxfALV0KgwaFehYsCM8i0mRy4K+ANIgZdOgQHr161TxfZWU4d1JTqKxeDStWhB5hlZW7rqNLl7r3WDp3brweYcuWwamnQseO4fxFt251v0dEskqB0VzssUc4fNOpExxxRM3zVVSE3l41BcuqVfDSS2Geqlq2DB0Dst0j7LXX4JRTwnmZkhI46KD6b7+INJgCQ3a2oxtw165w1FE1z7dt2197hFX3KCuDZ5+F9et3fW\/r1jt3Na7uxP0BB4Rusm+\/Ha7e3nPPEBZ1nfcRkUajwJDd06pVOPHcvXvt823ZUnuPsBUrQrfYzZt3fe+Onl5t24ZzFrWdyxGRRqfAkMbVpg0cemh41Gbz5uqDZePGMFT54Yc3Tb0iUiMFhuSGdu3C42\/+Ju1KRKQGGuRIREQSUWCIiEgiCgwREUlEgSEiIokoMEREJBEFhoiIJKLAEBGRRBQYIiKSiHnVW4rmOTMrB97fzbd3Aj7JYjlp0rbknkLZDtC25KqGbMu33L1zbTMUXGA0hJmVuntR2nVkg7Yl9xTKdoC2JVc19rbokJSIiCSiwBARkUQUGDu7L+0CskjbknsKZTtA25KrGnVbdA5DREQS0R6GiIgkosAQEZFECiYwzKy7mS00s5Vm9pqZXR3b9zGz+Wb2dnzuGNsPM7M\/mtmXZnZdxnK+Y2avZDw2mdlPqlmfmdndZlZmZsvNrG8eb8uJZrYxY77\/m2vbEl\/7aVzGq2b2qJl9o5r1tTazx+LP5UUzOziPt+VCMyvP+Ln8cw5ux9VxG16r7ncrzpPzn5V6bEsufVbOj9\/PFWb2gpn1zljWIDN7M37Pr69hffX\/rLh7QTyArkDfON0OeAvoBfwbcH1svx64LU7vB\/wd8K\/AdTUsswXwEeGClqqvDQHmAAYcA7yYx9tyIjArl38uQDfgPaBN\/Ppx4MJq1nc58Ns4PQJ4LI+35ULg\/+fwz+RvgVeBvQh373wa+HY+flbqsS259Fn5e6BjnB684\/tK+Ky\/AxwKtAKWAb2y8VkpmD0Md1\/j7n+K05uB1wkfzKFAcZytGBgW51nr7kuA7bUstj\/wjrtXd+X4UGCyB4uBDmbWNU+3pdFkeVtaAm3MrCXhg\/2XaubJXO5UoL+ZWZ5uS6PI4nYcTvgj9YW7fwU8C5xVzSrz4bOSdFsazW5sywvuvj62LwYOjNP9gDJ3f9fdtwFT4jKqqvdnpWACI1PctToSeBHo4u5r4ksfAV3qsagRwKM1vNYN+DDj61WxLauaaFsAjjWzZWY2x8y+u1vF1qEh2+Luq4H\/AD4A1gAb3X1eNbN+\/XOJH\/yNwL7ZqD9TE20LwNnxsMNUM+ueleIzNPD361XgeDPb18z2IuxJVFdjPnxWkm4L5OZn5RLCXhwk\/37X+7NScIFhZt8Efgf8xN03Zb7mYd8rUT9iM2sFnAE8kfUiE2rCbfkT4VBVb+D\/AU\/ubs211NCgbYnHbYcChwAHAG3N7IJs15lEE27LU8DB7n4EMJ+\/\/jeYFQ3dDnd\/HbgNmAf8AXgFqMhmjUk14bbk3GfFzE4iBMbPs11LVQUVGGa2J+Eb\/d\/uPi02f7xj9zc+r024uMHAn9z94xpeX83O\/4EcGNuyoim3xd03uftncXo2sKeZdWrQBmTI0racArzn7uXuvh2YRjiGW9XXP5d4uKc98GnDtyJoym1x90\/d\/cv45STgqGxsQ6wzK79f7v6Aux\/l7icA6wnH3avKi89Kkm3Jtc+KmR1B+N0Y6u47fs+Tfr\/r\/VkpmMCIx94eAF539zsyXpoJjIrTo4AZCRd5HrUfwpkJjIw9QI4hHFZYU8v8iTX1tpjZ\/juOXZpZP8LvRVb+yGZxWz4AjjGzveIy+xOO8VaVudzhQEn8r6zBmnpbqhznP6O6eXZHNn+\/zGy\/+HwQ4Zj\/I9XMlheflSTbkkuflVjnNOCf3D0z3JYAPc3skHh0YURcRlX1\/6x4I5ztT+MBHEfYVVtO2J18hXAccl9gAfA2oefDPnH+\/QnH9jYBG+L03vG1toRfgvZV1nEpcGmcNmACoTfCCqAoj7flCuA1Qm+KxcDf5+i2\/Bp4g3C8+WGgdWwfC5wRp79BOPRWBrwEHJrH2zIu4+eyEDgsB7djEbAy1tg\/zz8rSbYllz4rkwh7QjvmLc1Y1hDCHtI7wE0Z7Q36rGhoEBERSaRgDkmJiEjjUmCIiEgiCgwREUlEgSEiIokoMEREJBEFhoiIJKLAEMlBZtYi7RpEqlJgiDSQmY21jPsnmNm\/Wri3wv8xsyVx8MBfZ7z+pJkttXDPg9EZ7Z+Z2e1mtgw4tmm3QqRuCgyRhnsQGAlgZnsQhmL4COhJGGq6D3CUmZ0Q57\/Y3Y8CioCrzGzHCKFtCUNs93b355uwfpFEWqZdgEi+c\/c\/m9mnZnYkYejplwk36RkQpwG+SQiQ5wghcWZs7x7bPyWMjvq7pqxdpD4UGCLZMYlwh7z9CXsc\/YFx7n5v5kxmdiJhtNpj3f0LM3uGMKYPwFZ3T2V4cJEkdEhKJDumA4MIexZz4+PieG8DzKxbHA21PbA+hsVhhFuWiuQF7WGIZIG7bzOzhcCGuJcwz8wOB\/4YR8P+DLiAcHOeS83sdeBNwoinInlBo9WKZEE82f0n4Bx3fzvtekQagw5JiTSQmfUi3FNggcJCCpn2MEREJBHtYYiISCIKDBERSUSBISIiiSgwREQkEQWGiIgk8r9IU2kG\/3lMBAAAAABJRU5ErkJggg==\n",
+                    "mimeType":"image\/png",
+                    "width":0,
+                    "height":0,
+                    "type":"plot"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          },
+          {
+            "type":"CODE",
+            "text":"# TODO Bonus - use np.where() to create new column in dataframe to help you answer your own questions\nimport numpy as np\ndf['new_columns']=np.where(df['Profit']>=0,'profit','loss')\ndf.head()",
+            "outputs":[
+              {
+                "stdout":"",
+                "stderr":"",
+                "outputReprs":[
+                  
+                ],
+                "displayData":[
+                  {
+                    "html":"<div>\n<style scoped>\n    .dataframe tbody tr th:only-of-type {\n        vertical-align: middle;\n    }\n\n    .dataframe tbody tr th {\n        vertical-align: top;\n    }\n\n    .dataframe thead th {\n        text-align: right;\n    }\n<\/style>\n<table border=\"1\" class=\"dataframe\">\n  <thead>\n    <tr style=\"text-align: right;\">\n      <th><\/th>\n      <th>Row ID<\/th>\n      <th>Order ID<\/th>\n      <th>Order Date<\/th>\n      <th>Ship Date<\/th>\n      <th>Ship Mode<\/th>\n      <th>Customer ID<\/th>\n      <th>Customer Name<\/th>\n      <th>Segment<\/th>\n      <th>Country\/Region<\/th>\n      <th>City<\/th>\n      <th>...<\/th>\n      <th>Product ID<\/th>\n      <th>Category<\/th>\n      <th>Sub-Category<\/th>\n      <th>Product Name<\/th>\n      <th>Sales<\/th>\n      <th>Quantity<\/th>\n      <th>Discount<\/th>\n      <th>Profit<\/th>\n      <th>year<\/th>\n      <th>new_columns<\/th>\n    <\/tr>\n  <\/thead>\n  <tbody>\n    <tr>\n      <th>0<\/th>\n      <td>1<\/td>\n      <td>CA-2019-152156<\/td>\n      <td>2019-11-08<\/td>\n      <td>2019-11-11<\/td>\n      <td>Second Class<\/td>\n      <td>CG-12520<\/td>\n      <td>Claire Gute<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Henderson<\/td>\n      <td>...<\/td>\n      <td>FUR-BO-10001798<\/td>\n      <td>Furniture<\/td>\n      <td>Bookcases<\/td>\n      <td>Bush Somerset Collection Bookcase<\/td>\n      <td>261.9600<\/td>\n      <td>2<\/td>\n      <td>0.00<\/td>\n      <td>41.9136<\/td>\n      <td>2019<\/td>\n      <td>profit<\/td>\n    <\/tr>\n    <tr>\n      <th>1<\/th>\n      <td>2<\/td>\n      <td>CA-2019-152156<\/td>\n      <td>2019-11-08<\/td>\n      <td>2019-11-11<\/td>\n      <td>Second Class<\/td>\n      <td>CG-12520<\/td>\n      <td>Claire Gute<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Henderson<\/td>\n      <td>...<\/td>\n      <td>FUR-CH-10000454<\/td>\n      <td>Furniture<\/td>\n      <td>Chairs<\/td>\n      <td>Hon Deluxe Fabric Upholstered Stacking Chairs,...<\/td>\n      <td>731.9400<\/td>\n      <td>3<\/td>\n      <td>0.00<\/td>\n      <td>219.5820<\/td>\n      <td>2019<\/td>\n      <td>profit<\/td>\n    <\/tr>\n    <tr>\n      <th>2<\/th>\n      <td>3<\/td>\n      <td>CA-2019-138688<\/td>\n      <td>2019-06-12<\/td>\n      <td>2019-06-16<\/td>\n      <td>Second Class<\/td>\n      <td>DV-13045<\/td>\n      <td>Darrin Van Huff<\/td>\n      <td>Corporate<\/td>\n      <td>United States<\/td>\n      <td>Los Angeles<\/td>\n      <td>...<\/td>\n      <td>OFF-LA-10000240<\/td>\n      <td>Office Supplies<\/td>\n      <td>Labels<\/td>\n      <td>Self-Adhesive Address Labels for Typewriters b...<\/td>\n      <td>14.6200<\/td>\n      <td>2<\/td>\n      <td>0.00<\/td>\n      <td>6.8714<\/td>\n      <td>2019<\/td>\n      <td>profit<\/td>\n    <\/tr>\n    <tr>\n      <th>3<\/th>\n      <td>4<\/td>\n      <td>US-2018-108966<\/td>\n      <td>2018-10-11<\/td>\n      <td>2018-10-18<\/td>\n      <td>Standard Class<\/td>\n      <td>SO-20335<\/td>\n      <td>Sean O'Donnell<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Fort Lauderdale<\/td>\n      <td>...<\/td>\n      <td>FUR-TA-10000577<\/td>\n      <td>Furniture<\/td>\n      <td>Tables<\/td>\n      <td>Bretford CR4500 Series Slim Rectangular Table<\/td>\n      <td>957.5775<\/td>\n      <td>5<\/td>\n      <td>0.45<\/td>\n      <td>-383.0310<\/td>\n      <td>2018<\/td>\n      <td>loss<\/td>\n    <\/tr>\n    <tr>\n      <th>4<\/th>\n      <td>5<\/td>\n      <td>US-2018-108966<\/td>\n      <td>2018-10-11<\/td>\n      <td>2018-10-18<\/td>\n      <td>Standard Class<\/td>\n      <td>SO-20335<\/td>\n      <td>Sean O'Donnell<\/td>\n      <td>Consumer<\/td>\n      <td>United States<\/td>\n      <td>Fort Lauderdale<\/td>\n      <td>...<\/td>\n      <td>OFF-ST-10000760<\/td>\n      <td>Office Supplies<\/td>\n      <td>Storage<\/td>\n      <td>Eldon Fold 'N Roll Cart System<\/td>\n      <td>22.3680<\/td>\n      <td>2<\/td>\n      <td>0.20<\/td>\n      <td>2.5164<\/td>\n      <td>2018<\/td>\n      <td>profit<\/td>\n    <\/tr>\n  <\/tbody>\n<\/table>\n<p>5 rows × 23 columns<\/p>\n<\/div>",
+                    "specialKind":"TABLE",
+                    "type":"html"
+                  }
+                ]
+              }
+            ],
+            "meta":{
+              
+            },
+            "language":"PYTHON",
+            "inputCollapsed":false,
+            "outputCollapsed":false
+          }
+        ]
+      }
+    ],
+    "packageManager":"pip",
+    "baseEnvironment":"default",
+    "packages":[
+      
+    ],
+    "kernelType":"JUPYTER",
+    "language":"PYTHON"
+  }
+}
